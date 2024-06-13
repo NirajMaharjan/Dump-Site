@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+        button{
+            width:5rem;
+            padding: 1em;
+            background-color:white;
+            border: 1px solid green;
+            border-radius: 10px;
+            color:green;
+
+        }
+        button:hover{
+            background-color: green;
+            color:white;
+        }
+    </style>
+</head>
+<body>
+    <img id="myImage" src="http://portal.nccs.edu.np:85/EMISPortal/images/bachelorstudent/NCCSCSIT1111.jpg" alt="">
+    <button id="incrementButton">Next</button>
+    <button id="decrementButton">Previous</button>
+    <h2>ID: <span id="num"></span></h2>
+
+    <script>
+
+
+
+        document.getElementById('incrementButton').addEventListener('click', function() {
+    const img = document.getElementById('myImage');
+    const src = img.getAttribute('src');
+
+    // Extract the number from the image src using regex
+    const match = src.match(/(\d+)(?=\.\w+$)/);
+    if (match) {
+        const number = parseInt(match[0], 10);
+        const incrementedNumber = number + 1;
+        document.getElementById("num").innerText=number;
+
+        // Replace the number in the src string
+        const newSrc = src.replace(number, incrementedNumber);
+        img.setAttribute('src', newSrc);
+    }
+});
+
+
+document.getElementById('decrementButton').addEventListener('click', function() {
+    const img = document.getElementById('myImage');
+    const src = img.getAttribute('src');
+
+    // Extract the number from the image src using regex
+    const match = src.match(/(\d+)(?=\.\w+$)/);
+    if (match) {
+        const number = parseInt(match[0], 10);
+        const decrementedNumber = number - 1;
+        document.getElementById("num").innerText=number;
+        // Replace the number in the src string
+        const newSrc = src.replace(number, decrementedNumber    );
+        img.setAttribute('src', newSrc);
+    }
+});
+
+    </script>
+</body>
+</html>
